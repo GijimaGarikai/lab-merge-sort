@@ -19,8 +19,13 @@ public class MergeSortExperiments {
    */
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
-    experiment01(pen);
-    experiment02(pen);
+    int[] nums = new int[] {5, 6,7,8,9,10,0,1,2,3,4};
+    MergeSorter.merge(nums, 0, 6, 10, compareInts);
+    for (int i = 0; i < nums.length; i++) {
+      pen.println(nums[i]);
+    }
+    // experiment01(pen);
+    // experiment02(pen);
   } // main
 
   // +-------------+-------------------------------------------------

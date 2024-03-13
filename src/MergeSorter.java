@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -17,7 +18,8 @@ public class MergeSorter {
    * Sort an array using the merge sort algorithm.
    */
   public static <T> void sort(T[] vals, Comparator<? super T> comparator) {
-    // STUB
+    int start = 0;
+    int final = vals.length();
   } // sort
 
   // +-----------------+---------------------------------------------
@@ -30,8 +32,42 @@ public class MergeSorter {
    *
    * Preconditions: Each subarray is sorted accorting to comparator.
    */
-  static <T> void merge(T[] vals, int lo, int mid, int hi, Comparator<? super T> comparator) {
-    // STUB
+  static <T> void merge(int[] nums, int lo, int mid, int hi, Comparator<Integer> compareInts) {
+    int initialMid = mid;
+    int initialLo = lo;
+    int[] newVals = Arrays.copyOfRange(nums, lo, hi+1);
+    int count = 0;
+    while (lo < initialMid && mid <= hi) {
+      //System.out.println(count);
+      if (compareInts.compare(nums[lo], nums[mid]) <= 0) {
+        newVals[count] = nums[lo];
+        lo++;
+      } else {
+        newVals[count] = nums[mid];
+        mid++;
+      }
+      count++;
+    }
+    if (lo == initialMid) {
+      
+      while (mid < hi) {
+        //ystem.out.println(count);
+        newVals[count] = nums[mid];
+        mid++;
+        count++;
+      }
+    } else {
+      while (lo < initialMid) {
+        //System.out.println(count);
+        newVals[count] = nums[lo];
+        lo++;
+        count++;
+      }
+    }
+    int j = 0;
+    for (int i = initialLo; i < hi+1; i++) {
+      nums[i] = newVals[j++];
+    }
   } // merge
 
-} // class MergeSorter
+}// class MergeSorter
